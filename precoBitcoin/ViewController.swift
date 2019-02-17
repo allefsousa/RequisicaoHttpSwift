@@ -19,6 +19,29 @@ class ViewController: UIViewController {
             
                 if erro == nil{
                     print("Sucesso ao fazer consulta de preço")
+                    if let dadosRetorno = dados{
+                        
+                        do{
+                            if let objectJson = try JSONSerialization.jsonObject(with: dadosRetorno, options:[]) as? [String: Any]{
+                                
+                                if let blr = objectJson["BRL"] as? [String:Any]{
+                                    if let pree = blr["buy"] as? Float{
+                                        print(pree)
+                                    }
+                                   
+
+                                }
+
+                            }
+
+                        }catch{
+                            print("Erro ao formatar o retorno")
+                            
+                        }
+                        
+                    }
+                    
+                    
                 }else{
                     print("Erro ao fazer consulta de preço")
 
